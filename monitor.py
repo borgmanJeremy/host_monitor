@@ -4,7 +4,8 @@ import urllib
 import urllib.request
 import http.client
 import json
-
+import os
+import sys
 
 def get_tokens(json_file):
     """Loads the user tokens from a json file"""
@@ -26,7 +27,9 @@ def service_is_up(url: str) -> bool:
 
 
 if __name__ == "__main__":
-    tokens = get_tokens("keys.json")
+
+    full_path = os.path.join(sys.path[0], "keys.json")
+    tokens = get_tokens(full_path)
 
     parser = argparse.ArgumentParser(description="Checks if a service is up")
     parser.add_argument("-u", "--url", required=True, help="The url to check")
