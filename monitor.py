@@ -19,7 +19,7 @@ def get_tokens(json_file):
 def service_is_up(url: str) -> bool:
     """Checks if the service is up by looking to see if the response code is 200"""
     try:
-        response = urllib.request.urlopen(url)
+        response = urllib.request.urlopen(url, timeout=10)
         code = response.code
     except urllib.error.HTTPError as error:
         code = error.code
