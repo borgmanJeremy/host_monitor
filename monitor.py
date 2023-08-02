@@ -23,6 +23,8 @@ def service_is_up(url: str) -> bool:
         code = response.code
     except urllib.error.HTTPError as error:
         code = error.code
+    except urlib.error.URLError:
+        code = 404
     return bool(code == 200)
 
 
